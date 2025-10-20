@@ -131,7 +131,7 @@ jobs:
             -V CJKmainfont="Noto Sans CJK KR" \
             -V CJKsansfont="Noto Sans CJK KR" \
             -V CJKmonofont="Noto Sans Mono CJK KR" \
-            # -H font-custom.tex \
+            -H font-custom.tex \
             -V geometry:margin=1.5cm \
             -V linestretch=1.5 \
             -V fontsize=11pt \

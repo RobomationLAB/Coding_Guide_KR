@@ -91,34 +91,34 @@ jobs:
                 fi
               done
 
-      # - name: Create custom font LaTeX header
-      #   run: |
-      #     cd wiki
-      #     cat > font-custom.tex << 'EOF'
-      #     % Package for any font size
-      #     \usepackage{anyfontsize}
+      - name: Create custom font LaTeX header
+        run: |
+          cd wiki
+          cat > font-custom.tex << 'EOF'
+          % Package for any font size
+          \usepackage{anyfontsize}
 
-      #     % Code highlighting and verbatim - 5pt font
-      #     \usepackage{fancyvrb}
-      #     \usepackage{fvextra}
+          % Code highlighting and verbatim - 5pt font
+          \usepackage{fancyvrb}
+          \usepackage{fvextra}
 
-      #     % Define Highlighting environment for pandoc code blocks - 5pt
-      #     \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
-      #       fontsize=\fontsize{5pt}{6pt}\selectfont,
-      #       breaklines=true,
-      #       breaksymbolleft={},
-      #       showspaces=false,
-      #       showtabs=false,
-      #       commandchars=\\\{\}
-      #     }
+          % Define Highlighting environment for pandoc code blocks - 5pt
+          \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+            fontsize=\fontsize{5pt}{6pt}\selectfont,
+            breaklines=true,
+            breaksymbolleft={},
+            showspaces=false,
+            showtabs=false,
+            commandchars=\\\{\}
+          }
 
-      #     % Override verbatim environment - 5pt
-      #     \fvset{fontsize=\fontsize{5pt}{6pt}\selectfont}
+          % Override verbatim environment - 5pt
+          \fvset{fontsize=\fontsize{5pt}{6pt}\selectfont}
 
-      #     % Inline code - 5pt font
-      #     \let\oldtexttt\texttt
-      #     \renewcommand{\texttt}[1]{{\fontsize{5pt}{6pt}\selectfont\oldtexttt{#1}}}
-      #     EOF
+          % Inline code - 5pt font
+          \let\oldtexttt\texttt
+          \renewcommand{\texttt}[1]{{\fontsize{5pt}{6pt}\selectfont\oldtexttt{#1}}}
+          EOF
 
       - name: Generate PDF
         run: |

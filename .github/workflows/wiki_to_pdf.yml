@@ -148,6 +148,6 @@ jobs:
           git pull origin $BRANCH --rebase || true
           git add $PDF_FILENAME
           if ! git diff --staged --quiet; then
-            git commit -m "Update Wiki PDF (Code 5pt, Normal text default)"
+            git commit -m "Update Wiki to PDF"
             git push origin $BRANCH
           fi

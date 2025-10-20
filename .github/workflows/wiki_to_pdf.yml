@@ -104,7 +104,7 @@ jobs:
 
           % Define Highlighting environment for pandoc code blocks - 5pt
           \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
-            fontsize=\fontsize{5pt}{6pt}\selectfont,
+            % fontsize=\fontsize{5pt}{6pt}\selectfont,
             breaklines=true,
             breaksymbolleft={},
             showspaces=false,
@@ -113,11 +113,11 @@ jobs:
           }
 
           % Override verbatim environment - 5pt
-          \fvset{fontsize=\fontsize{5pt}{6pt}\selectfont}
+          % \fvset{fontsize=\fontsize{5pt}{6pt}\selectfont}
 
           % Inline code - 5pt font
           \let\oldtexttt\texttt
-          \renewcommand{\texttt}[1]{{\fontsize{5pt}{6pt}\selectfont\oldtexttt{#1}}}
+          % \renewcommand{\texttt}[1]{{\fontsize{5pt}{6pt}\selectfont\oldtexttt{#1}}}
           EOF
 
       - name: Generate PDF
@@ -131,7 +131,7 @@ jobs:
             -V CJKmainfont="Noto Sans CJK KR" \
             -V CJKsansfont="Noto Sans CJK KR" \
             -V CJKmonofont="Noto Sans Mono CJK KR" \
-            % -H font-custom.tex
+            -H font-custom.tex
             -V geometry:margin=1.5cm \
             -V linestretch=1.5 \
             -V fontsize=11pt \

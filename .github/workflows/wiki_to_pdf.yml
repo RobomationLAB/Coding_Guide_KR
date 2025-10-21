@@ -84,27 +84,6 @@ jobs:
           % \renewcommand{\texttt}[1]{{\fontsize{5pt}{6pt}\selectfont\oldtexttt{#1}}}
           EOF
 
-      - name: Merge Wiki files and download images
-        run: |
-          cd wiki
-          
-          % 각 .md 파일별 이미지 다운로드 및 링크 치환
-          mkdir -p downloaded_images
-          for file in *.md; do
-            grep -oP '!\[.*?\]\(\K(https?://[^)]+)' "$file" \
-              | sort -u \
-              | while read -r url; do
-                  filename=$(echo "$url" | md5sum | cut -d' ' -f1)
-                  extension="${url##*.}"
-                  [ ${#extension} -gt 4 ] && extension="jpg"
-                  curl -L -s --max-time 10 "$url" \
-                    -o "downloaded_images/${filename}.${extension}" || true
-                  if [ -f "downloaded_images/${filename}.${extension}" ]; then
-                    sed -i "s|$url|downloaded_images/${filename}.${extension}|g" "$file"
-                  fi
-                done
-          done
-
       - name: Generate PDFs
         run: |
           cd wiki

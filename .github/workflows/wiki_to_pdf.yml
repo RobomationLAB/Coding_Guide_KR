@@ -92,22 +92,22 @@ jobs:
           BLOCK_PAGES=("논리" "조건문" "반복" "연산" "문자열" "리스트" "색상" "소리" "제어" "변수" "함수" "기타")
 
           # 기본 블록 묶기
-          echo "# 기본 블록" > combined_block.md
-          echo "" >> combined_block.md
+          echo "# 기본 블록" > 기본-블록.md
+          echo "" >> 기본-블록.md
           for page in "${BLOCK_PAGES[@]}"; do
             file="${page}.md"
             if [ -f "$file" ]; then
-              echo "# $page" >> combined_block.md
-              echo "" >> combined_block.md
-              cat "$file" >> combined_block.md
-              echo "" >> combined_block.md
-              echo "---" >> combined_block.md
-              echo "" >> combined_block.md
+              echo "# $page" >> 기본-블록.md
+              echo "" >> 기본-블록.md
+              cat "$file" >> 기본-블록.md
+              echo "" >> 기본-블록.md
+              echo "---" >> 기본-블록.md
+              echo "" >> 기본-블록.md
             fi
           done
 
           # PDF 생성
-          pandoc combined_block.md \
+          pandoc 기본-블록.md \
             --pdf-engine=xelatex \
             -V mainfont="Noto Sans CJK KR" \
             -V sansfont="Noto Sans CJK KR" \
@@ -120,7 +120,7 @@ jobs:
             -V linestretch=1.5 \
             -V fontsize=11pt \
             --highlight-style=tango \
-            -o 기본_블록.pdf
+            -o 기본-블록.pdf
 
           # 나머지 Wiki 파일 개별 PDF 생성
           for file in *.md; do
@@ -157,8 +157,8 @@ jobs:
         run: |
           cd ${{ github.workspace }}
         
-          mkdir -p PDFs
-          mv wiki/*.pdf PDFs/
+          mkdir -p PDF
+          mv wiki/*.pdf PDF/
           rm -rf wiki/
         
           git config user.name "${COMMITTER_NAME}"
@@ -166,7 +166,7 @@ jobs:
           git remote set-url origin https://x-access-token:${{ env.GH_TOKEN }}@github.com/${REPO_OWNER}/${REPO_NAME}.git
           git fetch origin
           git pull origin $BRANCH --rebase || true
-          git add PDFs/*.pdf
+          git add PDF/*.pdf
           
           if ! git diff --staged --quiet; then
             git commit -m "Update Wiki to PDFs"

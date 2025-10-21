@@ -126,15 +126,10 @@ jobs:
           for file in *.md; do
             base=$(basename "$file" .md)
 
-            # 기본 블록 페이지면 건너뜀
-            skip=false
-            for block in "${BLOCK_PAGES[@]}"; do
-              if [ "$base" = "$block" ]; then
-                skip=true
-                break
-              fi
-            done
-            [ "$skip" = true ] && continue
+            # 기본 블록 페이지거나, Home 이면 건너뜀
+            if [[ " ${BLOCK_PAGES[*]} " =~ " ${base} " || "$base" = "Home" ]]; then
+              continue
+            fi
 
             # PDF 생성
             pandoc "$file" \

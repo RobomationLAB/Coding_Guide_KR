@@ -96,7 +96,7 @@ jobs:
           echo "" >> combined_block.md
           for page in "${Block_PAGES[@]}"; do
             file="${page}.md"
-            if( [ -f "$file" ]; then
+            if [ -f "$file" ]; then
               echo "# $page" >> combined_block.md
               echo "" >> combined_block.md
               cat "$file" >> combined_block.md

@@ -94,7 +94,7 @@ jobs:
           % 기본 블록 묶기
           echo "# 기본 블록" > combined_block.md
           echo "" >> combined_block.md
-          for page in "${Block_PAGES[@]}"; do
+          for page in "${BLOCK_PAGES[@]}"; do
             file="${page}.md"
             if [ -f "$file" ]; then
               echo "# $page" >> combined_block.md

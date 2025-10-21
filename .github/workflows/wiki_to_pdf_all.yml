@@ -1,4 +1,4 @@
-name: Generate PDF from Wiki
+name: Generate PDF from Wiki (All)
 
 on:
   schedule:

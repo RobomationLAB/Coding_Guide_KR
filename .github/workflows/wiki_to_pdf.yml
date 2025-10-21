@@ -155,16 +155,19 @@ jobs:
 
       - name: Commit PDF to repository
         run: |
-          mkdir -p ../pdfs
-          mv wiki/*.pdf ../pdfs/
-          cd ..
+          cd ${{ github.workspace }}
+        
+          mkdir -p PDFs
+          mv wiki/*.pdf PDFs/
+          rm -rf wiki/
+        
           git config user.name "${COMMITTER_NAME}"
           git config user.email "${COMMITTER_EMAIL}"
           git remote set-url origin https://x-access-token:${{ env.GH_TOKEN }}@github.com/${REPO_OWNER}/${REPO_NAME}.git
           git fetch origin
           git pull origin $BRANCH --rebase || true
-          cp pdfs/*.pdf ./
-          git add *.pdf
+          git add PDFs/*.pdf
+          
           if ! git diff --staged --quiet; then
             git commit -m "Update Wiki to PDFs"
             git push origin $BRANCH

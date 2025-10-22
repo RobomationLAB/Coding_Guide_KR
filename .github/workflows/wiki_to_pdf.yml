@@ -160,7 +160,7 @@ jobs:
           git config user.email "${COMMITTER_EMAIL}"
           git remote set-url origin https://x-access-token:${{ env.GH_TOKEN }}@github.com/${REPO_OWNER}/${REPO_NAME}.git
           git fetch origin
-          git pull origin $BRANCH --rebase || true
+          git reset --hard origin/$BRANCH
           git add PDF/*.pdf
           
           if ! git diff --staged --quiet; then

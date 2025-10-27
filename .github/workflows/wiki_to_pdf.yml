@@ -127,7 +127,7 @@ jobs:
             base=$(basename "$file" .md)
 
             # 기본 블록 페이지거나, Home 이면 건너뜀
-            if [[ " ${BLOCK_PAGES[*]} " =~ " ${base} " || "$base" = "Home" ]]; then
+            if [[ " ${BLOCK_PAGES[*]} " =~ " ${base} " || "$base" = "Home" || "$base" = "_Sidebar" ]]; then
               continue
             fi
 

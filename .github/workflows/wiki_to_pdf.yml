@@ -122,6 +122,10 @@ jobs:
             --highlight-style=tango \
             -o 기본-블록.pdf
 
+          # 기본-블록.md 파일 /MD 폴더로 이동
+          mkdir -p ../MD
+          mv 기본-블록.md ../MD/
+
           # 나머지 Wiki 파일 개별 PDF 생성
           for file in *.md; do
             base=$(basename "$file" .md)
